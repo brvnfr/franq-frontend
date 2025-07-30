@@ -1,27 +1,41 @@
-
+import { useState } from "react"
 import { Cards } from "@/presentation/components/dashboard/Cards"
 import { Overview } from "@/presentation/components/dashboard/Overview"
-import { RecentSales } from "@/presentation/components/dashboard/RecentSales"
 import { DataTable } from "@/presentation/components/dashboard/DataTable"
-import { useFinanceStatus } from "@/utils/hooks/useFinanceStatus"
+import { useStockTimeSeries } from "@/utils/hooks/useStockTimeSeries"
+
+const symbols = [
+  { value: "AAPL", label: "Apple" },
+  { value: "BTC/USD", label: "Bitcoin" },
+  { value: "USD/BRL", label: "Dólar" }
+]
 
 export default function DashboardPage() {
-  const { data, isLoading, error } = useFinanceStatus()
-
-  if (isLoading) return <div className="p-8">Carregando dados...</div>
-  if (error) return <div className="p-8 text-red-500">Erro ao carregar dados.</div>
-  if (!data) return null
+  const [symbol, setSymbol] = useState(symbols[0].value)
+  const { data, isLoading, error } = useStockTimeSeries(symbol)
 
   return (
     <main className="flex-1 p-8 pt-6 space-y-6">
-      <Cards finance={data} />
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Overview bitcoin={data.bitcoin} stocks={data.stocks} />
-        <RecentSales currencies={data.currencies} />
+      <div className="mb-4">
+        <select
+          value={symbol}
+          onChange={e => setSymbol(e.target.value)}
+          className="border px-2 py-1 rounded"
+        >
+          {symbols.map(s => (
+            <option key={s.value} value={s.value}>{s.label}</option>
+          ))}
+        </select>
       </div>
-      <div className="mt-6">
-        <DataTable stocks={data.stocks} />
-      </div>
+      {isLoading && <div>Carregando dados...</div>}
+      {error && <div className="text-red-500">Erro ao carregar dados.</div>}
+      {data && (
+        <>
+          <Cards symbol={symbol} data={data} />
+          <Overview symbol={symbol} data={data} />
+          <DataTable symbol={symbol} data={data} />
+        </>
+      )}
     </main>
   )
 }

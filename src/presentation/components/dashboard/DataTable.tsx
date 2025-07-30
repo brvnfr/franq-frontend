@@ -1,31 +1,37 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import type { Stock } from "@/core/domain/Finance"
+import type { TimeSeriesResponse } from "@/core/domain/TwelveData"
 
-export function DataTable({ stocks }: { stocks: Record<string, Stock> }) {
-  const lista = Object.values(stocks)
+interface Props {
+  data: TimeSeriesResponse
+  symbol: string
+}
+
+export function DataTable({ data, symbol }: Props) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Ações (Stocks)</CardTitle>
+        <CardTitle>Cotações - {symbol}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-muted">
             <thead>
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Nome</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Pontos</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Localização</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Variação</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Data</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Open</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Close</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">High</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Low</th>
               </tr>
             </thead>
             <tbody>
-              {lista.map((s, i) => (
+              {data?.values?.slice(0, 10).map((row, i) => (
                 <tr key={i} className="hover:bg-muted">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">{s.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">{s.points}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">{s.location}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">{s.variation > 0 ? "+" : ""}{s.variation.toFixed(2)}%</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">{row.datetime}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">{row.open}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">{row.close}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">{row.high}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">{row.low}</td>
                 </tr>
               ))}
             </tbody>
