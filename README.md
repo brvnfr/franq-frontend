@@ -1,6 +1,6 @@
 # Franq Frontend Challenge
 
-Sistema desenvolvido para o desafio técnico da vaga de Pessoa Engenheira de Software Sênior (Frontend React) na Franq.
+Sistema desenvolvido para o desafio técnico da vaga de Pessoa Engenheira de Software Sênior na Franq.
 
 [![React](https://img.shields.io/badge/React-19.x-61DAFB?logo=react)]
 [![Vite](https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite)]
