@@ -6,7 +6,8 @@ import RegisterPage from "@/presentation/pages/RegisterPage";
 import DashboardPage from "@/presentation/pages/DashboardPage";
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  if (loading) return <div>Carregando...</div>;
   return user ? <>{children}</> : <Navigate to="/login" replace />;
 };
 

@@ -14,12 +14,16 @@ export function Header() {
   const { user, logout } = useAuth();
 
   return (
-    <header className="sticky top-0 left-0 w-full z-50 flex items-center justify-between border-b bg-background px-4 py-3 shadow-sm">
-      <span className="text-xl font-bold tracking-tight text-primary">
-        Franq
+    <header className="sticky top-0 left-0 w-full z-50 flex items-center justify-between border-b bg-background px-4">
+      <span className="flex items-center">
+        <img
+          src="/favicon.svg"
+          alt="Franq"
+          className="w-6 h-6"
+          style={{ filter: "var(--logo-filter)" }}
+        />
       </span>
-      <div className="flex flex-row items-between gap-2">
-        <div>
+      <div className="flex flex-row items-center gap-2">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative w-9 h-9 p-0 rounded-full">
@@ -43,10 +47,7 @@ export function Header() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        </div>
-         <div>
         <ModeToggle />
-        </div>
       </div>
     </header>
   );
