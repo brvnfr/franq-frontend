@@ -7,8 +7,6 @@ Sistema desenvolvido para o desafio técnico da vaga de Pessoa Engenheira de Sof
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)]
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-06B6D4?logo=tailwindcss)]
 [![shadcn/ui](https://img.shields.io/badge/shadcn/ui-themeable-262626)]
-[![Jest](https://img.shields.io/badge/Jest-tested-%23C21325?logo=jest)]
-[![Vitest](https://img.shields.io/badge/Vitest-unit-e8e850?logo=vitest)]
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ---
@@ -50,7 +48,6 @@ Sistema web completo, com autenticação, integração com API financeira, exibi
 - **Dayjs** para datas
 - **Sonner** para toasts/feedbacks
 - **Lucide-react** para ícones SVG
-- **Testes:** Jest, Vitest, @testing-library/react
 
 ---
 
@@ -60,7 +57,6 @@ Sistema web completo, com autenticação, integração com API financeira, exibi
 - **SOLID/OOP:** Entidades, contratos e casos de uso bem definidos.
 - **Design System:** shadcn/ui + Tailwind + Radix UI, suporte nativo a dark/light.
 - **Estado global:** Zustand.
-- **Testes:** Jest e Vitest configurados.
 
 ---
 
@@ -138,16 +134,6 @@ npm run dev
 # ou
 yarn dev
 ```
-
----
-
-## 🧪 Testes
-
-- **Unitários:**  
-  `npm run test`  
-- **Vitest:**  
-  `npm run test:unit`
-- **E2E:** *(Adicionar Cypress se implementado)*
 
 ---
 
